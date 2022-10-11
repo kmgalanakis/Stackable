@@ -200,11 +200,10 @@ export const Style = props => {
 
 Style.Content = props => {
 	const {
-		attributes,
 		...propsToPass
 	} = props
 
-	const styles = getStyles( attributes, getStyleParams( propsToPass.options ) )
+	const styles = getStyles( props.attributes, getStyleParams( propsToPass.options ) )
 
 	return (
 		<>
@@ -216,7 +215,7 @@ Style.Content = props => {
 			/>
 			<BorderStyle.Content
 				{ ...{
-					attributes,
+					attributes: props.attributes,
 					...propsToPass,
 					options: {
 						...propsToPass.options,
@@ -233,7 +232,7 @@ Style.Content = props => {
 			/>
 			<Icon.Style.Content
 				{ ...{
-					attributes,
+					attributes: props.attributes,
 					...propsToPass,
 				} } />
 		</>

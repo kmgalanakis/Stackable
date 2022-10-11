@@ -144,12 +144,11 @@ export const BorderStyle = props => {
 
 BorderStyle.Content = props => {
 	const {
-		attributes,
 		options = {},
 		...propsToPass
 	} = props
 
-	const styles = getStyles( attributes, getStyleParams( options ) )
+	const styles = getStyles( props.attributes, getStyleParams( options ) )
 
 	return (
 		<Fragment>

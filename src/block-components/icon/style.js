@@ -248,13 +248,12 @@ export const Style = props => {
 
 Style.Content = props => {
 	const {
-		attributes,
 		options = {},
 		...propsToPass
 	} = props
 
-	const styles = getStyles( attributes, getStyleParams( options ) )
-	const premiumStyles = getStyles( attributes, applyFilters( 'stackable.block-component.icon.get-style-params', [], options ) )
+	const styles = getStyles( props.attributes, getStyleParams( options ) )
+	const premiumStyles = getStyles( props.attributes, applyFilters( 'stackable.block-component.icon.get-style-params', [], options ) )
 
 	return (
 		<>

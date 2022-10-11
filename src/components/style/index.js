@@ -15,6 +15,7 @@ import { useBlockEditContext } from '@wordpress/block-editor'
 import {
 	useBlockAttributesContext, useDeviceType, useRafMemo,
 } from '~stackable/hooks'
+import { applyFilters } from '@wordpress/hooks'
 
 const Style = memo( props => {
 	const {
@@ -61,7 +62,7 @@ const Style = memo( props => {
 		return generateStyles( doImportant( stylesToRender ), blockUniqueClassName, breakTablet, breakMobile ).join( '' )
 	}, [ doRender, styles, deviceType, blockUniqueClassName, breakTablet, breakMobile ] )
 
-	const output = useDynamicContent( css )
+	const output = applyFilters( 'stackable.blockOutputStyles', useDynamicContent( css ), blockUniqueClassName, useBlockAttributesContext(), true )
 
 	// If the block doesn't have a unique className (based on the uniqueId), it
 	// means that the user is still picking a layout.
@@ -88,7 +89,7 @@ Style.defaultProps = {
 
 Style.Content = props => {
 	const {
-		version, versionAdded, versionDeprecated, styles, blockUniqueClassName, breakTablet, breakMobile,
+		version, versionAdded, versionDeprecated, styles, blockUniqueClassName, breakTablet, breakMobile, attributes,
 	} = props
 
 	// If the block doesn't have a unique className (based on the uniqueId), it
@@ -117,7 +118,7 @@ Style.Content = props => {
 		return null
 	}
 
-	return <Fragment>{ minifyCSS( css.join( '' ) ) }</Fragment>
+	return <Fragment>{ minifyCSS( applyFilters( 'stackable.blockOutputStyles', css.join( '' ), blockUniqueClassName, attributes, false ) ) }</Fragment>
 }
 
 Style.Content.defaultProps = {

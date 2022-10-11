@@ -160,15 +160,14 @@ export const Style = props => {
 
 Style.Content = props => {
 	const {
-		attributes,
 		options = {},
 		...propsToPass
 	} = props
 
-	const topSeparatorStyles = getStyles( attributes, separatorGetStyleParams( options, 'top' ) )
-	const bottomSeparatorStyles = getStyles( attributes, separatorGetStyleParams( { ...options, isInitiallyFlippedVertically: false }, 'bottom' ) )
-	const topSeparatorLayerStyles = getStyles( attributes, applyFilters( 'stackable.block-component.separator.get-style-params', [], options, 'top' ) )
-	const bottomSeparatorLayerStyles = getStyles( attributes, applyFilters( 'stackable.block-component.separator.get-style-params', [], options, 'bottom' ) )
+	const topSeparatorStyles = getStyles( props.attributes, separatorGetStyleParams( options, 'top' ) )
+	const bottomSeparatorStyles = getStyles( props.attributes, separatorGetStyleParams( { ...options, isInitiallyFlippedVertically: false }, 'bottom' ) )
+	const topSeparatorLayerStyles = getStyles( props.attributes, applyFilters( 'stackable.block-component.separator.get-style-params', [], options, 'top' ) )
+	const bottomSeparatorLayerStyles = getStyles( props.attributes, applyFilters( 'stackable.block-component.separator.get-style-params', [], options, 'bottom' ) )
 
 	return (
 		<>

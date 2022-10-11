@@ -312,13 +312,12 @@ export const Style = props => {
 
 Style.Content = props => {
 	const {
-		attributes,
 		options = {},
 		...propsToPass
 	} = props
 
-	const styles = getStyles( attributes, getStyleParams( options ) )
-	const styles2 = getStyles( attributes, getStyleParams2( options ) )
+	const styles = getStyles( props.attributes, getStyleParams( options ) )
+	const styles2 = getStyles( props.attributes, getStyleParams2( options ) )
 
 	return (
 		<Fragment>

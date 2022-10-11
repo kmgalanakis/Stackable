@@ -6,12 +6,15 @@ import classnames from 'classnames'
 import { Div } from '~stackable/components'
 import { getUniqueBlockClass, useQueryLoopInstanceId } from '~stackable/util'
 import { useBlockAttributesContext } from '~stackable/hooks'
+import { applyFilters } from '@wordpress/hooks'
 
 export const ContainerDiv = props => {
 	const attributes = useBlockAttributesContext()
 	const instanceId = useQueryLoopInstanceId( attributes.uniqueId )
 	let uniqueBlockClass = getUniqueBlockClass( attributes.uniqueId )
 	uniqueBlockClass = instanceId ? uniqueBlockClass + `-${ instanceId }` : uniqueBlockClass
+
+	uniqueBlockClass = applyFilters( 'stackable.block.uniqueClass', uniqueBlockClass, attributes, true )
 
 	const classNames = classnames( [
 		props.className,
@@ -47,7 +50,7 @@ ContainerDiv.Content = props => {
 	const classNames = classnames( [
 		props.className,
 		'stk-container',
-		`stk-${ attributes.uniqueId }-container`,
+		applyFilters( 'stackable.block.uniqueClass', `stk-${ attributes.uniqueId }-container`, attributes, false ),
 	], {
 		'stk-hover-parent': attributes.hasContainer && attributes.triggerHoverState, // This is needed to trigger parent-hovered hover styles.
 		'stk--no-background': ! attributes.hasContainer,
