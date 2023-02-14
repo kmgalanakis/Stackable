@@ -46,12 +46,11 @@ export const FlexGapStyles = props => {
 
 FlexGapStyles.Content = props => {
 	const {
-		attributes,
 		options = {},
 		...propsToPass
 	} = props
 
-	const styles = getStyles( attributes, getStyleParams( options ) )
+	const styles = getStyles( props.attributes, getStyleParams( options ) )
 
 	return (
 		<>

@@ -41,6 +41,8 @@ export const BlockDiv = props => {
 	let uniqueBlockClass = getUniqueBlockClass( attributes.uniqueId || tempUniqueId )
 	uniqueBlockClass = instanceId ? uniqueBlockClass + `-${ instanceId }` : uniqueBlockClass
 
+	uniqueBlockClass = applyFilters( 'stackable.block.uniqueClass', uniqueBlockClass, attributes, true )
+
 	// Variation picker will show up if there's no uniqueId yet (which will be
 	// the case when enableVariationPicker = true)
 	const variationPicker = useVariationPicker( clientId, attributes.uniqueId )
@@ -106,7 +108,7 @@ BlockDiv.Content = props => {
 	const classNames = classnames( [
 		className,
 		'stk-block',
-		getUniqueBlockClass( attributes.uniqueId ),
+		applyFilters( 'stackable.block.uniqueClass', getUniqueBlockClass( attributes.uniqueId ), attributes, false ),
 	],
 	applyFilters( 'stackable.block-components.block-div.classnames.content', [], attributes ),
 	{

@@ -81,11 +81,10 @@ Style.defaultProps = {
 
 Style.Content = props => {
 	const {
-		attributes,
 		...propsToPass
 	} = props
 
-	const styles = getStyles( attributes, getStyleParams( propsToPass.options ) )
+	const styles = getStyles( props.attributes, getStyleParams( propsToPass.options ) )
 
 	return (
 		<StyleComponent.Content
